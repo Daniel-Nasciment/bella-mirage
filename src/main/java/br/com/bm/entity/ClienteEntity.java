@@ -20,6 +20,16 @@ public class ClienteEntity {
 
 	private String tel;
 
+	@Deprecated
+	public ClienteEntity() {
+	}
+
+	public ClienteEntity(String nome, String socialSecNumber) {
+		this.nome = nome;
+		this.socialSecNumber = socialSecNumber;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

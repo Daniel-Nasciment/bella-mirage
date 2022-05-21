@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import br.com.bm.dto.ClienteRequest;
 import br.com.bm.dto.ClienteResponse;
 import br.com.bm.dto.ListClientResponse;
 import br.com.bm.entity.ClienteEntity;
@@ -57,6 +58,19 @@ public class ClienteServiceImpl implements ClienteService {
 		}
 
 		return clientesEncontrados;
+	}
+
+	@Override
+	public void saveClient(ClienteRequest request) {
+
+		logger.info("Entrando serviço e método saveClient");
+		
+		ClienteEntity cliente = request.toModel();
+		
+		clienteRepository.save(cliente);
+		
+		logger.info("Saindo do serviço e método saveClient");
+		
 	}
 
 }
