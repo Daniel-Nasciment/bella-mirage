@@ -1,4 +1,4 @@
-package br.com.bm.dto;
+package br.com.bm.embeddable;
 
 import javax.persistence.Embeddable;
 

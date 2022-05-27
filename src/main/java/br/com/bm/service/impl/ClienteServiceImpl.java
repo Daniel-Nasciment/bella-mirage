@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import br.com.bm.dto.ClienteRequest;
-import br.com.bm.dto.ClienteResponse;
-import br.com.bm.dto.EnderecoRequest;
-import br.com.bm.dto.EnderecoResponse;
-import br.com.bm.dto.ListClientResponse;
-import br.com.bm.dto.TelefoneDTO;
+import br.com.bm.dto.request.ClienteRequest;
+import br.com.bm.dto.request.EnderecoRequest;
+import br.com.bm.dto.response.ClienteResponse;
+import br.com.bm.dto.response.EnderecoResponse;
+import br.com.bm.dto.response.ListClientResponse;
+import br.com.bm.embeddable.TelefoneDTO;
 import br.com.bm.entity.ClienteEntity;
 import br.com.bm.entity.EnderecoEntity;
 import br.com.bm.repository.ClienteRepository;

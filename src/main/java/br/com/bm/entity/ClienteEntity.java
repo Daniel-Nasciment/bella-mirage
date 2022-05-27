@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.bm.dto.TelefoneDTO;
+import br.com.bm.embeddable.TelefoneDTO;
 
 @Entity
 @Table(name = "CLIENTES")

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bm.dto.ClienteRequest;
-import br.com.bm.dto.ClienteResponse;
-import br.com.bm.dto.ListClientResponse;
+import br.com.bm.dto.request.ClienteRequest;
+import br.com.bm.dto.response.ClienteResponse;
+import br.com.bm.dto.response.ListClientResponse;
 import br.com.bm.service.ClienteService;
 
 @RestController

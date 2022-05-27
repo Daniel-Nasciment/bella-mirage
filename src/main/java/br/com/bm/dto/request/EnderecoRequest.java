@@ -1,4 +1,4 @@
-package br.com.bm.dto;
+package br.com.bm.dto.request;
 
 import javax.validation.constraints.NotBlank;
 

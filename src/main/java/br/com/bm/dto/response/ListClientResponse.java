@@ -1,4 +1,4 @@
-package br.com.bm.dto;
+package br.com.bm.dto.response;
 
 import java.util.ArrayList;
 import java.util.Collections;

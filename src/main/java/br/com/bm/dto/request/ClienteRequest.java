@@ -1,9 +1,12 @@
-package br.com.bm.dto;
+package br.com.bm.dto.request;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
+import br.com.bm.embeddable.TelefoneDTO;
 import br.com.bm.entity.ClienteEntity;
+import br.com.bm.validator.CPForCNPJ;
+import br.com.bm.validator.UniqueValue;
 
 public class ClienteRequest {
 
@@ -11,6 +14,8 @@ public class ClienteRequest {
 	private String nome;
 
 	@NotBlank
+	@UniqueValue(domainClass = ClienteEntity.class, fieldName = "socialSecNumber")
+	@CPForCNPJ
 	private String socialSecNumber;
 
 	private String phone1;

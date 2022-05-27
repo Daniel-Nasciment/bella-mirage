@@ -1,4 +1,4 @@
-package br.com.bm.dto;
+package br.com.bm.dto.response;
 
 import br.com.bm.entity.ClienteEntity;
 import br.com.bm.entity.EnderecoEntity;
