@@ -1,10 +1,15 @@
 package br.com.bm.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import br.com.bm.dto.TelefoneDTO;
 
 @Entity
 @Table(name = "CLIENTES")
@@ -18,7 +23,11 @@ public class ClienteEntity {
 
 	private String socialSecNumber;
 
-	private String tel;
+	@Embedded
+	private TelefoneDTO telefones;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private EnderecoEntity endereco;
 
 	@Deprecated
 	public ClienteEntity() {
@@ -28,7 +37,6 @@ public class ClienteEntity {
 		this.nome = nome;
 		this.socialSecNumber = socialSecNumber;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -50,12 +58,26 @@ public class ClienteEntity {
 		this.socialSecNumber = socialSecNumber;
 	}
 
-	public String getTel() {
-		return tel;
+	public TelefoneDTO getTelefones() {
+		return telefones;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setTelefones(TelefoneDTO telefones) {
+		this.telefones = telefones;
+	}
+
+	public EnderecoEntity getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoEntity endereco) {
+		this.endereco = endereco;
+	}
+
+	@Override
+	public String toString() {
+		return "ClienteEntity [nome=" + nome + ", socialSecNumber=" + socialSecNumber + ", telefones=" + telefones
+				+ "]";
 	}
 
 }

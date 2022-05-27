@@ -9,11 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bm.dto.ClienteRequest;
+import br.com.bm.dto.ClienteResponse;
 import br.com.bm.dto.ListClientResponse;
 import br.com.bm.service.ClienteService;
 
@@ -56,6 +58,23 @@ public class ClienteController {
 		logger.info("Saindo do endpoint findByNameOrSsn");
 		return ResponseEntity.ok(clienteEncontrados);
 	}
+	
+	@PutMapping(value = "/updateClient/{ssn}")
+	public ResponseEntity<ClienteResponse> updateClient(@PathVariable String ssn, @RequestBody ClienteRequest request) {
+		
+		logger.info("Entrando no endpoint updateClient");
+		
+		ClienteResponse updatedClient = clienteService.updateClient(ssn, request);
+		
+		if(updatedClient == null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		logger.info("Saindo do endpoint updateClient");
+		
+		return ResponseEntity.ok(updatedClient);
+	}
+
 
 
 }
