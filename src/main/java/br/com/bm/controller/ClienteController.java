@@ -62,12 +62,15 @@ public class ClienteController {
 	@GetMapping(value = "/findAll")
 	public ResponseEntity<ListClientResponse> findAll() {
 		
+		logger.info("Entrando no endpoint findAll");
+		
 		ListClientResponse response = clienteService.findAll();
 		
 		if(response.isError()) {
 			return ResponseEntity.notFound().build();
 		}
 		
+		logger.info("Saindo do endpoint findAll");
 		return ResponseEntity.ok(response);
 	
 	}
