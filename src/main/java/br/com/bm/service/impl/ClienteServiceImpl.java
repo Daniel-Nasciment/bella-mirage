@@ -1,5 +1,6 @@
 package br.com.bm.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -95,34 +96,63 @@ public class ClienteServiceImpl implements ClienteService {
 		Optional<ClienteEntity> entity = clienteRepository.findBySocialSecNumber(ssn);
 
 		logger.info("Buscando cliente na base....");
-		
+
 		if (entity.isPresent()) {
 
 			logger.info("Cliente encontrado na base....");
-			
+
 			ClienteEntity cliente = entity.get();
 
 			EnderecoEntity endereco = cliente.getEndereco();
-			
+
 			EnderecoRequest enderecoRequest = request.getEndereco();
-			
+
 			enderecoRequest.updateEndereco(endereco);
 
 			cliente.setNome(request.getNome());
 			cliente.setSocialSecNumber(request.getSocialSecNumber());
 			cliente.setTelefones(new TelefoneDTO(request.getPhone1(), request.getPhone2()));
 			cliente.setEndereco(endereco);
-			
+
 			clienteRepository.save(cliente);
-			
+
 			response.toResponse(cliente);
-			
+
 		}
 
 		logger.info("Cliente nao encontrado na base....");
 		logger.info("Saindo do serviço e método updateClient");
 
 		return null;
+	}
+
+	@Override
+	public ListClientResponse findAll() {
+
+		logger.info("Entrando no serviço e método findAll");
+
+		ListClientResponse responseList = new ListClientResponse();
+
+		try {
+			logger.info("Recuperando clientes da base...");
+			List<ClienteEntity> clientes = clienteRepository.findAll();
+
+			clientes.forEach(c -> {
+				ClienteResponse responseClient = new ClienteResponse();
+				responseClient.toResponse(c);
+				responseList.add(responseClient);
+			});
+		} catch (Exception e) {
+			
+			responseList.setError(true);
+			responseList.setMessage("Erro ao recuperar clientes da base...");
+			logger.info("Erro ao recuperar clientes da base!!");
+			
+		}
+
+		logger.info("Saindo do serviço e método findAll");
+
+		return responseList;
 	}
 
 }

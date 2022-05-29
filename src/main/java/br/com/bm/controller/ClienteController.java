@@ -59,6 +59,20 @@ public class ClienteController {
 		return ResponseEntity.ok(clienteEncontrados);
 	}
 	
+	@GetMapping(value = "/findAll")
+	public ResponseEntity<ListClientResponse> findAll() {
+		
+		ListClientResponse response = clienteService.findAll();
+		
+		if(response.isError()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		return ResponseEntity.ok(response);
+	
+	}
+
+	
 	@PutMapping(value = "/updateClient/{ssn}")
 	public ResponseEntity<ClienteResponse> updateClient(@PathVariable String ssn, @RequestBody ClienteRequest request) {
 		
