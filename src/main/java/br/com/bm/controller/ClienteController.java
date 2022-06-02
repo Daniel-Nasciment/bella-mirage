@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -91,6 +92,24 @@ public class ClienteController {
 		
 		return ResponseEntity.ok(updatedClient);
 	}
+	
+	@DeleteMapping(value = "deleteClient/{ssn}")
+	public ResponseEntity<?> deleteClient(@PathVariable String ssn) {
+		
+		logger.info("Entrando no endpoint deleteClient");
+		
+		boolean deleted = clienteService.deleteBySsn(ssn);
+		
+		if(deleted) {
+			logger.info("Cliente deletado. Saindo do endpoint deleteClient");
+			return ResponseEntity.ok().build();
+		}
+		
+		logger.info("Cliente nao encontrado. Saindo do endpoint deleteClient");
+		
+		return ResponseEntity.notFound().build();
+	}
+
 
 
 

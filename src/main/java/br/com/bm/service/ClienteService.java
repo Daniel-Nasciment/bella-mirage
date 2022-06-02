@@ -14,4 +14,6 @@ public interface ClienteService {
 
 	public ListClientResponse findAll();
 
+	public boolean deleteBySsn(String ssn);
+
 }

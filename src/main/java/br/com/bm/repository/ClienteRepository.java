@@ -13,4 +13,5 @@ public interface ClienteRepository extends JpaRepository<ClienteEntity, Long>, J
 
 	public Optional<ClienteEntity> findBySocialSecNumber(String ssn);
 
+
 }

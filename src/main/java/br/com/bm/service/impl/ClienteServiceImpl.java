@@ -155,4 +155,25 @@ public class ClienteServiceImpl implements ClienteService {
 		return responseList;
 	}
 
+	@Override
+	public boolean deleteBySsn(String ssn) {
+
+		logger.info("Entrando no serviço e método deleteBySsn");
+		
+		Optional<ClienteEntity> cliente = clienteRepository.findBySocialSecNumber(ssn);
+		
+		
+		if(cliente.isPresent()) {
+			
+			logger.info("Cliente localizado!");
+			
+			clienteRepository.deleteById(cliente.get().getId());
+			return true;
+		}
+		
+		logger.info("Saindo do serviço e método deleteBySsn");
+		
+		return false;
+	}
+
 }
