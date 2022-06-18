@@ -3,18 +3,18 @@ package br.com.bm.dto.request;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-import br.com.bm.embeddable.TelefoneDTO;
-import br.com.bm.entity.ClienteEntity;
+import br.com.bm.embeddable.PhoneDto;
+import br.com.bm.entity.ClientEntity;
 import br.com.bm.validator.CPForCNPJ;
 import br.com.bm.validator.UniqueValue;
 
-public class ClienteRequest {
+public class ClientRequest {
 
 	@NotBlank
-	private String nome;
+	private String name;
 
 	@NotBlank
-	@UniqueValue(domainClass = ClienteEntity.class, fieldName = "socialSecNumber")
+	@UniqueValue(domainClass = ClientEntity.class, fieldName = "socialSecNumber")
 	@CPForCNPJ
 	private String socialSecNumber;
 
@@ -23,14 +23,14 @@ public class ClienteRequest {
 	private String phone2;
 
 	@Valid
-	private EnderecoRequest endereco;
+	private AddressRequest address;
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getSocialSecNumber() {
@@ -57,33 +57,33 @@ public class ClienteRequest {
 		this.phone2 = phone2;
 	}
 
-	public EnderecoRequest getEndereco() {
-		return endereco;
+	public AddressRequest getAddress() {
+		return address;
 	}
 
-	public void setEndereco(EnderecoRequest endereco) {
-		this.endereco = endereco;
+	public void setAddress(AddressRequest address) {
+		this.address = address;
 	}
 
 	
 	// TRANSFORMANDO OBJETO DE REQUEST EM UM OBJETO DA ENTIDADE CLIENTE
-	public ClienteEntity toModel() {
+	public ClientEntity toModel() {
 
-		ClienteEntity cliente = new ClienteEntity(this.nome, this.socialSecNumber);
+		ClientEntity client = new ClientEntity(this.name, this.socialSecNumber);
 
 		if (this.phone1 != null || this.phone2 != null) {
 
-			TelefoneDTO phones = new TelefoneDTO(this.phone1, this.phone2);
+			PhoneDto phones = new PhoneDto(this.phone1, this.phone2);
 
-			cliente.setTelefones(phones);
+			client.setPhones(phones);
 
 		}
 		
-		EnderecoRequest endereco = this.endereco;
+		AddressRequest address = this.address;
 		
-		cliente.setEndereco(endereco.toModel());
+		client.setAddress(address.toModel());
 
-		return cliente;
+		return client;
 
 	}
 

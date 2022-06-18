@@ -11,24 +11,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bm.dto.request.PedidoRequest;
-import br.com.bm.service.PedidoService;
+import br.com.bm.dto.request.SaleRequest;
+import br.com.bm.service.SaleService;
 
 @RestController
-@RequestMapping(value = "/v1/pedidos")
-public class PedidoController {
+@RequestMapping(value = "/v1/sales")
+public class SaleController {
 	
-	private final Logger logger = LoggerFactory.getLogger(PedidoController.class);
+	private final Logger logger = LoggerFactory.getLogger(SaleController.class);
 	
 	
 	@Autowired
-	private PedidoService pedidoService;
+	private SaleService saleService;
 	
-	@PostMapping(value = "/newRequest")
-	public ResponseEntity<?> newRequest(@RequestBody @Valid PedidoRequest request) {
+	@PostMapping(value = "/newSale")
+	public ResponseEntity<?> newRequest(@RequestBody @Valid SaleRequest request) {
 
 		
-		pedidoService.newRequest(request);
+		saleService.newSale(request);
 		
 		return null;
 	}

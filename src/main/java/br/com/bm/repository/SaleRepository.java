@@ -3,10 +3,10 @@ package br.com.bm.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.bm.entity.ItemPedidoEntity;
+import br.com.bm.entity.SaleEntity;
 
 @Repository
-public interface ItemPedidoRepository extends JpaRepository<ItemPedidoEntity, Long> {
+public interface SaleRepository extends JpaRepository<SaleEntity, Long> {
 
 
 

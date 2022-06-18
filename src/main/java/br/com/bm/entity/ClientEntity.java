@@ -9,32 +9,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.bm.embeddable.TelefoneDTO;
+import br.com.bm.embeddable.PhoneDto;
 
 @Entity
-@Table(name = "CLIENTES")
-public class ClienteEntity {
+@Table(name = "CLIENTS")
+public class ClientEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nome;
+	private String name;
 
 	private String socialSecNumber;
 
 	@Embedded
-	private TelefoneDTO telefones;
+	private PhoneDto phones;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private EnderecoEntity endereco;
+	private AddressEntity address;
 
 	@Deprecated
-	public ClienteEntity() {
+	public ClientEntity() {
 	}
 
-	public ClienteEntity(String nome, String socialSecNumber) {
-		this.nome = nome;
+	public ClientEntity(String name, String socialSecNumber) {
+		this.name = name;
 		this.socialSecNumber = socialSecNumber;
 	}
 
@@ -42,12 +42,12 @@ public class ClienteEntity {
 		return id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String nome) {
+		this.name = nome;
 	}
 
 	public String getSocialSecNumber() {
@@ -58,25 +58,25 @@ public class ClienteEntity {
 		this.socialSecNumber = socialSecNumber;
 	}
 
-	public TelefoneDTO getTelefones() {
-		return telefones;
+	public PhoneDto getPhones() {
+		return phones;
 	}
 
-	public void setTelefones(TelefoneDTO telefones) {
-		this.telefones = telefones;
+	public void setPhones(PhoneDto telefones) {
+		this.phones = telefones;
 	}
 
-	public EnderecoEntity getEndereco() {
-		return endereco;
+	public AddressEntity getAddress() {
+		return address;
 	}
 
-	public void setEndereco(EnderecoEntity endereco) {
-		this.endereco = endereco;
+	public void setAddress(AddressEntity address) {
+		this.address = address;
 	}
 
 	@Override
 	public String toString() {
-		return "ClienteEntity [nome=" + nome + ", socialSecNumber=" + socialSecNumber + ", telefones=" + telefones
+		return "ClienteEntity [nome=" + name + ", socialSecNumber=" + socialSecNumber + ", telefones=" + phones
 				+ "]";
 	}
 

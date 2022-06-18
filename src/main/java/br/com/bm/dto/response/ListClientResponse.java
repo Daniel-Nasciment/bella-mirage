@@ -6,16 +6,16 @@ import java.util.List;
 
 public class ListClientResponse {
 
-	List<ClienteResponse> clientes = new ArrayList<ClienteResponse>();
+	List<ClientResponse> clients = new ArrayList<ClientResponse>();
 	private String message;
 	private boolean error = false;
 
-	public List<ClienteResponse> getClientes() {
-		return Collections.unmodifiableList(this.clientes);
+	public List<ClientResponse> getClients() {
+		return Collections.unmodifiableList(this.clients);
 	}
 
-	public void add(ClienteResponse cliente) {
-		this.clientes.add(cliente);
+	public void add(ClientResponse client) {
+		this.clients.add(client);
 	}
 
 	public String getMessage() {

@@ -15,27 +15,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bm.dto.request.ClienteRequest;
-import br.com.bm.dto.response.ClienteResponse;
+import br.com.bm.dto.request.ClientRequest;
+import br.com.bm.dto.response.ClientResponse;
 import br.com.bm.dto.response.ListClientResponse;
-import br.com.bm.service.ClienteService;
+import br.com.bm.service.ClientService;
 
 @RestController
-@RequestMapping(value = "/v1/cliente")
-public class ClienteController {
+@RequestMapping(value = "/v1/client")
+public class ClientController {
 	
-	private final Logger logger = LoggerFactory.getLogger(ClienteController.class);
+	private final Logger logger = LoggerFactory.getLogger(ClientController.class);
 	
 	@Autowired
-	private ClienteService clienteService;
+	private ClientService clientService;
 	
 	
 	@PostMapping(value = "/saveClient")
-	public ResponseEntity<?> saveClient(@RequestBody @Valid ClienteRequest request) {
+	public ResponseEntity<?> saveClient(@RequestBody @Valid ClientRequest request) {
 
 		logger.info("Entrando no endpoint saveClient");
 		
-		clienteService.saveClient(request);
+		clientService.saveClient(request);
 		
 		
 		logger.info("Saindo do endpoint saveClient");
@@ -49,15 +49,15 @@ public class ClienteController {
 		
 		logger.info("Entrando no endpoint findByNameOrSsn");
 		
-		ListClientResponse clienteEncontrados = clienteService.findByNameOrSsn(filter);
+		ListClientResponse clientFoud = clientService.findByNameOrSsn(filter);
 		
-		if (clienteEncontrados.getClientes().isEmpty()) {
+		if (clientFoud.getClients().isEmpty()) {
 			logger.info("Nenhum Cliente foi encontrado!");
 			return ResponseEntity.notFound().build();
 		}
 		
 		logger.info("Saindo do endpoint findByNameOrSsn");
-		return ResponseEntity.ok(clienteEncontrados);
+		return ResponseEntity.ok(clientFoud);
 	}
 	
 	@GetMapping(value = "/findAll")
@@ -65,7 +65,7 @@ public class ClienteController {
 		
 		logger.info("Entrando no endpoint findAll");
 		
-		ListClientResponse response = clienteService.findAll();
+		ListClientResponse response = clientService.findAll();
 		
 		if(response.isError()) {
 			return ResponseEntity.notFound().build();
@@ -78,11 +78,11 @@ public class ClienteController {
 
 	
 	@PutMapping(value = "/updateClient/{ssn}")
-	public ResponseEntity<ClienteResponse> updateClient(@PathVariable String ssn, @RequestBody ClienteRequest request) {
+	public ResponseEntity<ClientResponse> updateClient(@PathVariable String ssn, @RequestBody ClientRequest request) {
 		
 		logger.info("Entrando no endpoint updateClient");
 		
-		ClienteResponse updatedClient = clienteService.updateClient(ssn, request);
+		ClientResponse updatedClient = clientService.updateClient(ssn, request);
 		
 		if(updatedClient == null) {
 			return ResponseEntity.notFound().build();
@@ -98,7 +98,7 @@ public class ClienteController {
 		
 		logger.info("Entrando no endpoint deleteClient");
 		
-		boolean deleted = clienteService.deleteBySsn(ssn);
+		boolean deleted = clientService.deleteBySsn(ssn);
 		
 		if(deleted) {
 			logger.info("Cliente deletado. Saindo do endpoint deleteClient");

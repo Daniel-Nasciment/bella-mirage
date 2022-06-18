@@ -1,6 +1,6 @@
 package br.com.bm.dto.response;
 
-public class EnderecoResponse {
+public class AddressResponse {
 
 	private String rua;
 
@@ -14,7 +14,7 @@ public class EnderecoResponse {
 
 	private String cep;
 
-	public EnderecoResponse(String rua, String bairro, Integer numero, String cidade, String estado, String cep) {
+	public AddressResponse(String rua, String bairro, Integer numero, String cidade, String estado, String cep) {
 		this.rua = rua;
 		this.bairro = bairro;
 		this.numero = numero;

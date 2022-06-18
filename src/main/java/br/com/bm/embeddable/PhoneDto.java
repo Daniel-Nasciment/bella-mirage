@@ -3,17 +3,17 @@ package br.com.bm.embeddable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class TelefoneDTO {
+public class PhoneDto {
 
 	private String phone1;
 
 	private String phone2;
 
 	@Deprecated
-	public TelefoneDTO() {
+	public PhoneDto() {
 	}
 
-	public TelefoneDTO(String phone1, String phone2) {
+	public PhoneDto(String phone1, String phone2) {
 		this.phone1 = phone1;
 		this.phone2 = phone2;
 	}

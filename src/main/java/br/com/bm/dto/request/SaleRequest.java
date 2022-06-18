@@ -6,19 +6,19 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-public class PedidoRequest {
+public class SaleRequest {
 
 	@Valid
-	private List<ItemPedidoRequest> itens = new ArrayList<ItemPedidoRequest>();
+	private List<ItemSaleRequest> itens = new ArrayList<ItemSaleRequest>();
 	
 	@NotBlank
 	private String socialSecNumber;
 
-	public List<ItemPedidoRequest> getItens() {
+	public List<ItemSaleRequest> getItens() {
 		return itens;
 	}
 
-	public void setItens(List<ItemPedidoRequest> itens) {
+	public void setItens(List<ItemSaleRequest> itens) {
 		this.itens = itens;
 	}
 
