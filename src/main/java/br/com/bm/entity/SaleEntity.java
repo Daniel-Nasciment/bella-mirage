@@ -23,7 +23,7 @@ public class SaleEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private LocalDateTime date;
+	private LocalDateTime date = LocalDateTime.now();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private ClientEntity client;

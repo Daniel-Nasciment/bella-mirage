@@ -1,5 +1,7 @@
 package br.com.bm.controller;
 
+import java.net.URI;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.bm.dto.request.SaleRequest;
+import br.com.bm.dto.response.SaleResponse;
 import br.com.bm.service.SaleService;
 
 @RestController
@@ -25,12 +29,23 @@ public class SaleController {
 	private SaleService saleService;
 	
 	@PostMapping(value = "/newSale")
-	public ResponseEntity<?> newRequest(@RequestBody @Valid SaleRequest request) {
+	public ResponseEntity<Void> newSale(@RequestBody @Valid SaleRequest request) {
+		
+		logger.info("Entrando no endpoint newSale...");
 
+		SaleResponse newSaleResponse = saleService.newSale(request);
 		
-		saleService.newSale(request);
+		if(newSaleResponse == null) {
+			logger.info("Ocorreu algum problema durante o cliente para criar um novo pedido de venda!");
+			return ResponseEntity.badRequest().build();
+		}
 		
-		return null;
+		logger.info("Criando nova URI para acessar pedido de venda criado...");
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(newSaleResponse.getId()).toUri();
+		
+		
+		logger.info("Saindo do endpoint newSale...");
+		return ResponseEntity.created(uri).build();
 	}
 
 

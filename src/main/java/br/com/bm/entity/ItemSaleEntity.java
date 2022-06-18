@@ -34,7 +34,6 @@ public class ItemSaleEntity {
 
 	}
 	
-	
 	public ItemSaleEntity(BigDecimal unitityValue, int quantity, String description, SaleEntity sale) {
 		this.unitityValue = unitityValue;
 		this.quantity = quantity;
