@@ -14,6 +14,19 @@ public class ClientResponse {
 	private String phone2;
 
 	private AddressResponse address;
+	
+
+	public ClientResponse() {
+		
+	}
+	
+	public ClientResponse(String name, String socialSecNumber, String phone1, String phone2, AddressResponse address) {
+		this.name = name;
+		this.socialSecNumber = socialSecNumber;
+		this.phone1 = phone1;
+		this.phone2 = phone2;
+		this.address = address;
+	}
 
 	public String getName() {
 		return name;
@@ -55,7 +68,7 @@ public class ClientResponse {
 		this.address = address;
 	}
 
-	public void toResponse(ClientEntity client) {
+	public ClientResponse toResponse(ClientEntity client) {
 
 		AddressEntity entity = client.getAddress();
 
@@ -65,6 +78,8 @@ public class ClientResponse {
 		this.socialSecNumber = client.getSocialSecNumber();
 		this.address = new AddressResponse(entity.getRoad(), entity.getDistrict(), entity.getNumber(),
 				entity.getCity(), entity.getState(), entity.getPostCode());
+		
+		return this;
 
 	}
 

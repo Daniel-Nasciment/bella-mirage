@@ -8,7 +8,7 @@ public class ClientSpecification {
 
 	
 	public static Specification<ClientEntity> name(String name){
-		return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("nome"), "%" + name + "%");
+		return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("name"), "%" + name + "%");
 	}
 	
 	public static Specification<ClientEntity> ssn(String ssn){

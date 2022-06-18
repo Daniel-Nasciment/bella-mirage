@@ -24,7 +24,6 @@ public class SaleController {
 	
 	private final Logger logger = LoggerFactory.getLogger(SaleController.class);
 	
-	
 	@Autowired
 	private SaleService saleService;
 	

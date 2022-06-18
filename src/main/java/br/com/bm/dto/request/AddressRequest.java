@@ -2,12 +2,17 @@ package br.com.bm.dto.request;
 
 import javax.validation.constraints.NotBlank;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sun.istack.NotNull;
 
 import br.com.bm.entity.AddressEntity;
 
 public class AddressRequest {
 
+	private final Logger logger = LoggerFactory.getLogger(AddressRequest.class);
+	
 	@NotBlank
 	private String road;
 
@@ -76,12 +81,15 @@ public class AddressRequest {
 
 	public AddressEntity toModel() {
 
+		logger.info("entrando no método toModel e convertendo request de endereço em uma entidade...");
 		return new AddressEntity(this.road, this.district, this.number, this.city, this.state, this.postCode);
 
 	}
 
-	public AddressEntity updateEndereco(AddressEntity address) {
+	public AddressEntity updateAddress(AddressEntity address) {
 
+		logger.info("Entrando no método updateAddress e atualizando endereço a partir da request...");
+		
 		address.setRoad(this.road);
 		address.setDistrict(this.district);
 		address.setNumber(this.number);
