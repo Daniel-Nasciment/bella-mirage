@@ -39,7 +39,7 @@ public class ClientService {
 
 	public ListClientResponse findByNameOrSsn(String filter) {
 
-		logger.info("Entrando serviço e método findByNameOrSsn...");
+		logger.info("Entrando serviço findByNameOrSsn...");
 
 		ListClientResponse clientsFound = new ListClientResponse();
 
@@ -62,13 +62,13 @@ public class ClientService {
 
 		}
 
-		logger.info("Saindo do serviço e método findByNameOrSsn...");
+		logger.info("Saindo do serviço findByNameOrSsn...");
 		return clientsFound;
 	}
 
 	public ListClientResponse findAll() {
 
-		logger.info("Entrando no serviço e método findAll");
+		logger.info("Entrando no serviço findAll");
 
 		ListClientResponse responseList = new ListClientResponse();
 
@@ -89,14 +89,14 @@ public class ClientService {
 
 		}
 
-		logger.info("Saindo do serviço e método findAll");
+		logger.info("Saindo do serviço findAll");
 
 		return responseList;
 	}
 
 	public ClientResponse updateClient(String ssn, ClientUpdateRequest request) {
 
-		logger.info("Entrando no serviço e método updateClient");
+		logger.info("Entrando no serviço updateClient");
 
 		Optional<ClientEntity> clientPossible = clientRepository.findBySocialSecNumber(ssn);
 
@@ -115,14 +115,14 @@ public class ClientService {
 		}
 
 		logger.info("Cliente nao encontrado na base....");
-		logger.info("Saindo do serviço e método updateClient");
+		logger.info("Saindo do serviço updateClient");
 
 		return null;
 	}
 
 	public boolean deleteBySsn(String ssn) {
 
-		logger.info("Entrando no serviço e método deleteBySsn");
+		logger.info("Entrando no serviço deleteBySsn");
 
 		Optional<ClientEntity> client = clientRepository.findBySocialSecNumber(ssn);
 
@@ -134,7 +134,7 @@ public class ClientService {
 			return true;
 		}
 
-		logger.info("Saindo do serviço e método deleteBySsn");
+		logger.info("Saindo do serviço deleteBySsn");
 
 		return false;
 	}
