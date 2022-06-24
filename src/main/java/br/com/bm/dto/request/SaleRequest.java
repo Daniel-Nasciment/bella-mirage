@@ -9,17 +9,17 @@ import javax.validation.constraints.NotBlank;
 public class SaleRequest {
 
 	@Valid
-	private List<ItemSaleRequest> itens = new ArrayList<ItemSaleRequest>();
+	private List<ItemSaleRequest> items = new ArrayList<ItemSaleRequest>();
 	
 	@NotBlank
 	private String socialSecNumber;
 
-	public List<ItemSaleRequest> getItens() {
-		return itens;
+	public List<ItemSaleRequest> getItems() {
+		return items;
 	}
 
-	public void setItens(List<ItemSaleRequest> itens) {
-		this.itens = itens;
+	public void setItems(List<ItemSaleRequest> items) {
+		this.items = items;
 	}
 
 	public String getSocialSecNumber() {

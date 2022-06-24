@@ -33,7 +33,7 @@ public class SaleEntity {
 
 	private String obs;
 
-	private BigDecimal total;
+	private BigDecimal total = BigDecimal.ZERO;
 
 	@Deprecated
 	public SaleEntity() {
@@ -43,7 +43,8 @@ public class SaleEntity {
 	public void addItem(ItemSaleEntity item) {
 		item.setSale(this);
 		this.items.add(item);
-		this.total = new BigDecimal(item.getQuantity()).multiply(item.getUnitityValue());
+		BigDecimal itemValue = new BigDecimal(item.getQuantity()).multiply(item.getUnitityValue());
+		this.total = this.total.add(itemValue);
 	}
 
 	public SaleEntity(ClientEntity client) {

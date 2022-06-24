@@ -8,9 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,7 +38,7 @@ public class SaleController {
 		SaleResponse newSaleResponse = saleService.newSale(request);
 		
 		if(newSaleResponse == null) {
-			logger.info("Ocorreu algum problema durante o cliente para criar um novo pedido de venda!");
+			logger.info("Ocorreu algum problema durante a busca do cliente para criar um novo pedido de venda!");
 			return ResponseEntity.badRequest().build();
 		}
 		
@@ -46,6 +49,18 @@ public class SaleController {
 		logger.info("Saindo do endpoint newSale...");
 		return ResponseEntity.created(uri).build();
 	}
+	
+	@GetMapping(value = "/findSale/{id}")
+	public ResponseEntity<?> findSale(@PathVariable Long id) {
+		
+		logger.info("Entrando no endpoint findSale...");
+		
+		SaleResponse saleResponse = saleService.findSaleById(id);
+		
+		logger.info("Saindo do endpoint findSale...");
+		return ResponseEntity.ok(saleResponse);
+	}
+
 
 
 }

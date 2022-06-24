@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.bm.entity.SaleEntity;
+
 public class SaleResponse {
 
 	private Long id;
@@ -20,11 +22,11 @@ public class SaleResponse {
 
 	private List<ItemSaleResponse> items = new ArrayList<>();
 
-	@Deprecated
 	public SaleResponse() {
 	}
 
-	public SaleResponse(Long id, LocalDateTime date, ClientResponse client, String obs, BigDecimal total, List<ItemSaleResponse> items) {
+	public SaleResponse(Long id, LocalDateTime date, ClientResponse client, String obs, BigDecimal total,
+			List<ItemSaleResponse> items) {
 		this.id = id;
 		this.date = date;
 		this.client = client;
@@ -80,9 +82,24 @@ public class SaleResponse {
 	public void setItems(List<ItemSaleResponse> items) {
 		this.items = items;
 	}
-	
+
 	public void addItem(ItemSaleResponse response) {
 		this.items.add(response);
+	}
+
+	public SaleResponse toResponse(SaleEntity sale) {
+
+		this.id = sale.getId();
+		this.date = sale.getDate();
+
+		sale.getItems().forEach(i -> {
+			this.items.add(new ItemSaleResponse(i.getUnitityValue(), i.getQuantity(), i.getDescription()));
+		});
+
+		this.obs = sale.getObs();
+		this.total = sale.getTotal();
+
+		return this;
 	}
 
 }

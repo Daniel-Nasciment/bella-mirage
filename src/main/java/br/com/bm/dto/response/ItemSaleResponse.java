@@ -10,7 +10,6 @@ public class ItemSaleResponse {
 
 	private String descripcion;
 
-	@Deprecated
 	public ItemSaleResponse() {
 	}
 
